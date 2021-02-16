@@ -1,0 +1,7 @@
+.header {
+    grid-area: h;
+    background-color: #231F20;
+    padding: 15px;
+    color: aliceblue;
+
+}
