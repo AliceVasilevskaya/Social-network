@@ -1,0 +1,8 @@
+.myInfo {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+.myInfo img {
+    width: 200px;
+
+}
