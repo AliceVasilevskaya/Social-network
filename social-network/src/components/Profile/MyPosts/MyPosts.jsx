@@ -11,7 +11,7 @@ My posts
         </div>
         <div className={s.posts}>
            <Post message = 'hi' likes = '15'/>
-           <Post message = 'haw are you?' likes = '20'/>
+           <Post message = 'how are you?' likes = '20'/>
         </div>
     </div>
 }

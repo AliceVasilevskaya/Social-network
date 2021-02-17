@@ -12,6 +12,6 @@
     color: black;
 }
 .nav a.active {
-    active: gold;
+    color: darkgoldenrod;
 
 }
