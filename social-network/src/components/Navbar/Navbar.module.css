@@ -7,3 +7,11 @@
     font-size: 20px;
 
 }
+.nav a {
+    text-decoration: none;
+    color: black;
+}
+.nav a.active {
+    active: gold;
+
+}
