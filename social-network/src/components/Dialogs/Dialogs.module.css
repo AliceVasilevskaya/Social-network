@@ -4,16 +4,3 @@
 }
 
 
-.dialogsItem a {
-    text-decoration: none;
-    color: black;
-}
-
-.message{
-
-}
-.dialogsItem a.active{
-   color: darkgoldenrod;
-
-
-}
