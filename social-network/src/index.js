@@ -3,10 +3,30 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+let posts = [
+    {message:'post text', likes:'❤ 15'},
+    {message:'post text', likes:'❤ 15'},
+    {message:'post text', likes:'❤ 15'},
+    {message:'post text', likes:'❤ 15'},
+    {message:'post text', likes:'❤ 15'}
+]
+let dialogs = [
+    {name: 'User1', id: 1},
+    {name: 'User1', id: 1},
+    {name: 'User1', id: 1},
+    {name: 'User1', id: 1},
+    {name: 'User1', id: 1}
+]
+let messages = [
+    {message: 'text message'},
+    {message: 'text message'},
+    {message: 'text message'},
+    {message: 'text message'},
+    {message: 'text message'}
+]
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App posts={posts} messages={messages} dialogs={dialogs}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
