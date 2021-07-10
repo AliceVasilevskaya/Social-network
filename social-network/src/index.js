@@ -3,33 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-let posts = [
-    {message:'post text', likes:'❤ 15'},
-    {message:'post text', likes:'❤ 15'},
-    {message:'post text', likes:'❤ 15'},
-    {message:'post text', likes:'❤ 15'},
-    {message:'post text', likes:'❤ 15'}
-]
-let dialogs = [
-    {name: 'User1', id: 1},
-    {name: 'User1', id: 1},
-    {name: 'User1', id: 1},
-    {name: 'User1', id: 1},
-    {name: 'User1', id: 1}
-]
-let messages = [
-    {message: 'text message'},
-    {message: 'text message'},
-    {message: 'text message'},
-    {message: 'text message'},
-    {message: 'text message'}
-]
-ReactDOM.render(
-  <React.StrictMode>
-    <App posts={posts} messages={messages} dialogs={dialogs}/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import {BrowserRouter} from "react-router-dom";
+import store from "./redux/redux-store";
+import StoreContext from "./StoreContext";
+
+ let rerenderEntireTree = (state) => {
+    ReactDOM.render(
+
+        <BrowserRouter>
+            <StoreContext.Provider value={store}>
+                <App/>
+            </StoreContext.Provider>
+        </BrowserRouter>, document.getElementById('root')
+    );
+}
+rerenderEntireTree(store.getState());
+
+ store.subscribe(() => {
+     let state= store.getState()
+     rerenderEntireTree(state)
+ } );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

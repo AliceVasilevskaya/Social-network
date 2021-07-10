@@ -1,29 +1,40 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
-
-
-
 const Dialogs = (props) => {
+let newMessageElement = React.createRef();
+let onSendMessage = () => {
+props.sendMessage()
+}
+let onMessageChange = () => {
+let messageText = newMessageElement.current.value;
+props.updateNewMessageText(messageText);
+}
+let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+let messagesElements = props.messages.map(m => <Message message={m.message} id={m.id}/>);
 
-
-
-    let dialogsElement = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    let messagesElement = props.messages.map(m => <Message message={m.message}/>)
-
-    return (
-        <div className={s.dialogs}>
+return (
+    <div className={s.dialogs}>
+        <div>
+            {dialogsElements}
+        </div>
+        <div className={s.message}>
+            {messagesElements}
+        </div>
+        <div>
             <div>
-                {dialogsElement}
+                    <textarea placeholder={'Enter your message'}
+                              onChange = {onMessageChange}
+                              value = {props.newMessageText}
+                              ref = {newMessageElement}/>
             </div>
-            <div className={s.message}>
-                {messagesElement}
+            <div>
+                <button onClick={onSendMessage}>Send message</button>
             </div>
         </div>
-
-    )
+    </div>
+)
 }
 export default Dialogs;
