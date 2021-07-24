@@ -14,7 +14,7 @@ const MyPosts = (props) => {
     }
 
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likes={p.likes}/>)
+    let postsElements = props.posts.map(p => <Post message={p.message} key={p.id} likes={p.likes}/>)
     return <div className={s.postsBlock}>
         <h2>My posts</h2>
         <div>

@@ -1,0 +1,19 @@
+.user{
+    margin: 20px;
+}
+.user img {
+    width: 80px;
+    vertical-align: middle;
+}
+
+.usersInform{
+
+    font-size: 20px;
+}
+
+.followed {
+    float: right;
+}
+.selectedPage{
+    font-weight: bold;
+}

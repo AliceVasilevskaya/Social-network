@@ -12,8 +12,8 @@ let onMessageChange = () => {
 let messageText = newMessageElement.current.value;
 props.updateNewMessageText(messageText);
 }
-let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-let messagesElements = props.messages.map(m => <Message message={m.message} id={m.id}/>);
+let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
+let messagesElements = props.messages.map(m => <Message message={m.message} key={m.id} id={m.id}/>);
 
 return (
     <div className={s.dialogs}>
