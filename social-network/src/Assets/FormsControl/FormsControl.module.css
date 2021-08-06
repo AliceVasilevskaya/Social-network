@@ -1,0 +1,16 @@
+.formControl{
+
+}
+.formControl.error input,
+.formControl.error textarea
+{
+    border: solid firebrick 1px;
+}
+.formControl.error span
+{
+   color : firebrick;
+}
+.formError
+{
+    color: firebrick;
+}

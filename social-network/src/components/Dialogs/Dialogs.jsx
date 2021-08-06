@@ -2,39 +2,29 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import AddMessageReduxForm from "./DialogForm";
 
 const Dialogs = (props) => {
-let newMessageElement = React.createRef();
-let onSendMessage = () => {
-props.sendMessage()
-}
-let onMessageChange = () => {
-let messageText = newMessageElement.current.value;
-props.updateNewMessageText(messageText);
-}
-let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
-let messagesElements = props.messages.map(m => <Message message={m.message} key={m.id} id={m.id}/>);
+    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
+    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id} id={m.id}/>);
 
-return (
-    <div className={s.dialogs}>
-        <div>
-            {dialogsElements}
-        </div>
-        <div className={s.message}>
-            {messagesElements}
-        </div>
-        <div>
+    let onSendMessage = (values) => {
+        props.sendMessage(values.newMessageBody)
+    }
+    return (
+        <div className={s.dialogs}>
             <div>
-                    <textarea placeholder={'Enter your message'}
-                              onChange = {onMessageChange}
-                              value = {props.newMessageText}
-                              ref = {newMessageElement}/>
+                {dialogsElements}
+            </div>
+            <div className={s.message}>
+                {messagesElements}
             </div>
             <div>
-                <button onClick={onSendMessage}>Send message</button>
+                <div>
+                    <AddMessageReduxForm onSubmit={onSendMessage}/>
+                </div>
             </div>
         </div>
-    </div>
-)
+    )
 }
 export default Dialogs;
