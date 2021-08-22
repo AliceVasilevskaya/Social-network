@@ -1,4 +1,4 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SEND_MESSAGE = 'social-network/dialogPage/SEND-MESSAGE';
 
 let initialState =  {
     dialogs: [

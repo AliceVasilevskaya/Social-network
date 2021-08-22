@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import AddMessageReduxForm from "./DialogForm";
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
+import AddMessageReduxForm from './DialogForm';
 
 const Dialogs = (props) => {
     let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);

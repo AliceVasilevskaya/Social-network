@@ -2,22 +2,22 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
 import userPhoto from '../../../Assets/Images/userPhoto.png';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateUserStatus}) => {
+    if (!profile) {
         return <Preloader/>
     }
     return <div className={s.myInfo}>
         <div>
-            <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}/>
+            <img src={profile.photos.large != null ? profile.photos.large : userPhoto}/>
         </div>
         <div>
             <div className={s.name}>
-                {props.profile.fullName}
+                {profile.fullName}
             </div>
             <div>
-           <ProfileStatus  updateUserStatus={props.updateUserStatus} status ={props.status}/>
+           <ProfileStatusWithHooks  updateUserStatus={updateUserStatus} status ={status}/>
             </div>
         </div>
     </div>

@@ -1,12 +1,29 @@
 import React from 'react';
 import s from './User.module.css';
+import {NavLink} from 'react-router-dom';
+import userPhoto from '../../../Assets/Images/userPhoto.png';
+const User = ({user, followingInProgress, unfollow, follow}) => {
 
-
-const User = (props) => {
-    return <div className={s.item}>
-        <img
-            src='https://st2.depositphotos.com/3730475/6441/i/600/depositphotos_64411041-stock-photo-starry-night-sky-with-stars.jpg'/>
-        <span className={s.postText}> {props.userName} <span className={s.likes}>{props.status}</span></span>
-          </div>
+    return < div key={user.id}>
+                <span className={s.user}>
+               <NavLink to={'/profile' + user.id}>
+                <img src={user.photos.small != null ? user.photos.small : userPhoto}/>
+               </NavLink>
+                    {user.name}
+                    <span className={s.usersInform}>
+                  <div className={s.followed}>
+                       {user.followed
+                           ? <button disabled={followingInProgress.some(id => user.id === id)}
+                                     onClick={() => {
+                                         unfollow(user.id)
+                                     }}> Unfollow</button>
+                           : <button disabled={followingInProgress.some(id => user.id === id)}
+                                     onClick={() => {
+                                         follow(user.id)
+                                     }}> Follow </button>}
+                  </div>
+                 </span>
+              </span>
+    </div>
 }
 export default User;

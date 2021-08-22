@@ -1,0 +1,12 @@
+.selectedPage{
+    font-weight: bold;
+}
+.paginaor {
+    padding: 2px;
+    border: 1px solid gray;
+    align-items: center ;
+}
+.pageNumber.selectedPage{
+    font-weight: bold;
+    border-color: black;
+}

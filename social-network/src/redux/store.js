@@ -1,5 +1,5 @@
-import dialogReducer from "./dialogReducer";
-import profileReducer from "./profileReducer";
+import dialogReducer from './dialogReducer';
+import profileReducer from './profileReducer';
 
 let store = {
     _callSubscriber() {
