@@ -1,16 +1,62 @@
-.formControl{
+.formControl {
 
 }
+
 .formControl.error input,
-.formControl.error textarea
-{
+.formControl.error textarea {
     border: solid firebrick 1px;
 }
-.formControl.error span
-{
-   color : firebrick;
-}
-.formError
-{
+
+.formControl.error span {
     color: firebrick;
 }
+
+.formError {
+    color: firebrick;
+}
+
+.login {
+
+}
+
+.login  input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 5px 0;
+    width: 200px;
+}
+
+input:hover {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0) inset,
+    0 1px 1px 1px rgba(47, 79, 79, 0.5),
+    0 -1px 1px 1px rgba(47, 79, 79, .5);
+}
+
+.checkbox {
+    display: flex;
+}
+
+.textarea {
+    width: 70%;
+    height: 30px;
+    resize: none;
+    outline: none;
+    background-color: white;
+    overflow: hidden;
+}
+
+.textarea:hover {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0) inset,
+    0 1px 1px 1px rgba(47, 79, 79, 0.5),
+    0 -1px 1px 1px rgba(47, 79, 79, .5);
+}
+
+.textarea:focus {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0) inset,
+    0 1px 1px 1px rgba(47, 79, 79, 0.5),
+    0 -1px 1px 1px rgba(47, 79, 79, .5);
+    height: 50px;
+    width: 100%;
+}
+

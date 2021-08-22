@@ -15,7 +15,6 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             }
-                ;
         default:
             return state;
     }
@@ -41,14 +40,12 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
             response.data.messages[0] : 'Some error';
         dispatch(stopSubmit('login', {_error: message}))
     }
-
 }
 export const logout = () => async (dispatch) => {
     let response = await authApi.logout()
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
     }
-
 }
 
 export default authReducer;

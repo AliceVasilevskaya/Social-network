@@ -1,5 +1,5 @@
 import {usersAPI} from '../api';
-import {updateObjectInArray} from "../utils/object-helpers";
+import {updateObjectInArray} from '../utils/object-helpers';
 
 const FOLLOW = 'social-network/usersPage/FOLLOW';
 const UNFOLLOW = 'social-network/usersPage/UNFOLLOW';
@@ -43,7 +43,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.id]
-                    : state.followingInProgress.filter(id => id != action.id)
+                    : state.followingInProgress.filter(id => id !== action.id)
             }
         default:
             return state;

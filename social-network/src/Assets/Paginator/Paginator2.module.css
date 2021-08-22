@@ -8,7 +8,7 @@
 .pagination ul li{
     color: black;
     list-style: none;
-    line-height: 45px;
+    line-height: 34px;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
@@ -25,13 +25,14 @@
     border-radius: 50%;
 }
 .pagination ul li.btn{
+    font-weight: bold;
+    text-align: center;
     list-style: none;
     height: 34px;
     width: 34px;
-    margin: 0 7px;
-    line-height: 34px;
+    margin: 0 5px;
+    line-height:32px ;
     border-radius: 50%;
-    /*background: #f3eff0;*/
     background: #e5f0f6;
 
 }
@@ -46,5 +47,5 @@
 .pagination ul li:first-child:hover,
 .pagination ul li:last-child:hover{
     color: #fff;
-    background:#ab7301;
+    background:		rgb(47,79,79);
 }

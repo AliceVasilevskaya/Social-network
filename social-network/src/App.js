@@ -18,6 +18,7 @@ class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp();
     }
+
     render() {
         return (
             <div className='app-wrapper'>
@@ -31,13 +32,12 @@ class App extends React.Component {
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
                     <Route path='/login' render={() => <Login/>}/>
-
                 </div>
             </div>
-
         );
     }
 }
+
 let mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })

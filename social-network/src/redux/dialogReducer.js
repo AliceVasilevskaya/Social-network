@@ -3,10 +3,10 @@ const SEND_MESSAGE = 'social-network/dialogPage/SEND-MESSAGE';
 let initialState =  {
     dialogs: [
         {name: 'User1', id: 1},
-        {name: 'User1', id: 1},
-        {name: 'User1', id: 1},
-        {name: 'User1', id: 1},
-        {name: 'User1', id: 1}
+        {name: 'User2', id: 2},
+        {name: 'User3', id: 3},
+        {name: 'User4', id: 4},
+        {name: 'User5', id: 5}
     ],
     messages: [
         {id: 1,message: 'text message'},

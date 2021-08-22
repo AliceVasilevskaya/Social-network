@@ -4,17 +4,19 @@ import Post from './Post/Post';
 import {Field, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators';
 import {Textarea} from '../../../Assets/FormsControl/FormsControl';
-
+import {Button} from "../../../Assets/Button/Button";
 
 const MyPosts = React.memo(props => {
     let onAddPost = (values) => {
         props.addPost(values.newPostBody)
     }
-    let postsElements = props.posts.map(p => <Post message={p.message} key={p.id} likes={p.likes}/>)
+    let postsElements = props.posts.map(p => <Post message={p.message}
+                                                   key={p.id}
+                                                   likes={p.likes}/>)
     return <div className={s.postsBlock}>
         <h2>My posts</h2>
         <div>
-            <AddPostReduxForm onSubmit = {onAddPost}/>
+            <AddPostReduxForm onSubmit={onAddPost}/>
         </div>
         <div className={s.posts}>
             {postsElements}
@@ -22,20 +24,18 @@ const MyPosts = React.memo(props => {
     </div>
 })
 const maxLength10 = maxLengthCreator(10)
-const AddPostForm =(props) => {
-
+const AddPostForm = (props) => {
     return <form onSubmit={props.handleSubmit}>
-        <Field component = {Textarea}
-               placeholder ={'Enter your message'}
-               name = {'newPostBody'}
-               validate={[ required, maxLength10]}
+        <Field component={Textarea}
+               placeholder={'Enter your message'}
+               name={'newPostBody'}
+               validate={[required, maxLength10]}
         />
-        <button >Add post</button>
-
-
+        <Button children={'Add Post'}/>
     </form>
 }
 const AddPostReduxForm = reduxForm({
     form: 'addPost',
-})(AddPostForm)
+})(AddPostForm);
+
 export default MyPosts;

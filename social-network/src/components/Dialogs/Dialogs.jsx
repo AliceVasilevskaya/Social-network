@@ -12,17 +12,17 @@ const Dialogs = (props) => {
         props.sendMessage(values.newMessageBody)
     }
     return (
-        <div className={s.dialogs}>
-            <div>
-                {dialogsElements}
-            </div>
-            <div className={s.message}>
-                {messagesElements}
-            </div>
-            <div>
+        <div>
+            <div className={s.dialogs}>
                 <div>
-                    <AddMessageReduxForm onSubmit={onSendMessage}/>
+                    {dialogsElements}
                 </div>
+                <div className={s.message}>
+                    {messagesElements}
+                </div>
+            </div>
+            <div className={s.btn}>
+                <AddMessageReduxForm onSubmit={onSendMessage}/>
             </div>
         </div>
     )

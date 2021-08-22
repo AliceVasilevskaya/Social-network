@@ -1,4 +1,5 @@
 import React from 'react';
+import s from './Users.module.css'
 import {
     follow,
     unfollow,
@@ -19,16 +20,19 @@ import {
 } from '../../redux/usersSelectors';
 
 class UsersContainer extends React.Component {
-    componentDidMount(){
+    componentDidMount() {
         const {currentPage, pageSize} = this.props;
-        this.props.getUsers(currentPage, pageSize)}
+        this.props.getUsers(currentPage, pageSize);
+    }
+
     onPageClick = (p) => {
         const {setUsers} = this.props;
-        setUsers(p, this.props.pageSize)
+        setUsers(p, this.props.pageSize);
     }
+
     render() {
         return <>
-          {/*{this.props.isFetching ? <Preloader/> : null}*/}
+            <div className={s.preloader}>{this.props.isFetching ? <Preloader/> : null}</div>
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
@@ -36,11 +40,12 @@ class UsersContainer extends React.Component {
                    unfollow={this.props.unfollow}
                    follow={this.props.follow}
                    users={this.props.users}
-                   followingInProgress={ this.props.followingInProgress}
+                   followingInProgress={this.props.followingInProgress}
             />
         </>
     }
 }
+
 let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
@@ -76,7 +81,9 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps,
-    {follow,unfollow,
-    setUsers,getUsers: requestUsers,toggleIsFetching})
-    ,WithAuthRedirect)(UsersContainer)
+        {
+            follow, unfollow,
+            setUsers, getUsers: requestUsers, toggleIsFetching
+        })
+    , WithAuthRedirect)(UsersContainer)
 
