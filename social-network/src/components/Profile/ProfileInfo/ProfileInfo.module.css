@@ -1,12 +1,74 @@
 .myInfo {
     display: grid;
     grid-template-columns: 3fr 7fr;
+    height: 100%;
+    margin-bottom: 20px;
 }
-.myInfo img {
-    width: 200px;
+
+.left img {
+    width: 230px;
+}
+
+.left {
+    width: 230px;
+    height: 100%;
 
 }
+
+.right {
+    margin: 20px 0px 0px 20px;
+    height: 100%;
+}
+
 .name {
     font-size: 30px;
     font-weight: bold;
+}
+
+.mainPhoto {
+    max-width: 230px;
+
+}
+
+.selectFile {
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.selectFile:hover {
+    box-shadow: none;
+}
+
+.dataForm {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: initial;
+    margin-top: 20px;
+    height: 100%;
+}
+
+.dataForm button {
+    margin-top: 20px;
+}
+
+.editDataForm {
+    display: block;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.editDataForm input {
+    width: 80%;
+}
+.contactsTitle {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.contacts {
+    margin-top: 40px;
 }

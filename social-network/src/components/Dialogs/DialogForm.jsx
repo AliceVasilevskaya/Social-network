@@ -1,9 +1,8 @@
 import React from 'react';
-import { reduxForm} from 'redux-form';
+import {reduxForm} from 'redux-form';
 import {createField,  Textarea} from '../../Assets/FormsControl/FormsControl';
 import {maxLengthCreator, required} from '../../utils/validators';
 import {Button} from '../../Assets/Button/Button';
-import s from '../../Assets/FormsControl/FormsControl.module.css'
 
 const maxLength100 = maxLengthCreator(10)
 const AddMessageForm = (props) => {
@@ -11,7 +10,7 @@ const AddMessageForm = (props) => {
         <form onSubmit={props.handleSubmit}>
             <div>
                 {createField(Textarea,'Enter your message', 'newMessageBody',
-                    [required, maxLength100],null,'textarea' )}
+                    [required, maxLength100],null,'text' )}
             </div>
             <div>
                 <Button children={'Send'}/>
@@ -20,8 +19,8 @@ const AddMessageForm = (props) => {
     )
 }
 const AddMessageReduxForm = reduxForm({
-    form: 'addMessage',
+    form: 'addMessage'
 })(AddMessageForm)
 
 
-export default   AddMessageReduxForm;
+export default AddMessageReduxForm;

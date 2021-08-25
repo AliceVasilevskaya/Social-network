@@ -7,7 +7,7 @@ import authReducer from './authReducer';
 import {reducer as formReducer} from 'redux-form';
 import appReducer from './appReducer';
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     profilePage:profileReducer,
     dialogPage:dialogReducer,
     usersPage: usersReducer,

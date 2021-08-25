@@ -1,6 +1,6 @@
 const SEND_MESSAGE = 'social-network/dialogPage/SEND-MESSAGE';
 
-let initialState =  {
+const initialState =  {
     dialogs: [
         {name: 'User1', id: 1},
         {name: 'User2', id: 2},

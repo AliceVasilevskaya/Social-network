@@ -1,12 +1,15 @@
-import React from 'react';
-import s from './Profile.module.css';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import React from "react";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
-    return <div className={s.content}>
-        <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}/>
-        <MyPostsContainer/>
+    return <div>
+        <ProfileInfo profile={props.profile} status={props.status}
+                     updateUserStatus={props.updateUserStatus}
+                     savePhoto={props.savePhoto}
+                     saveProfile ={props.saveProfile}
+                     isOwner={props.isOwner}/>
+        <div><MyPostsContainer/></div>
     </div>
 }
 export default Profile;

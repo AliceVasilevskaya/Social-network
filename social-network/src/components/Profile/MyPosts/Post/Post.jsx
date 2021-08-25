@@ -5,9 +5,11 @@ import user from '../../../../Assets/Images/user.jpg'
 const Post = (props) => {
     return <div className={s.item}>
         <img src={user}/>
-        <span className={s.postText}> {props.message}
+        <div  className={s.postText}>
+            <span> {props.message}</span>
             <span className={s.likes}>{props.likes}</span>
-        </span>
+        </div>
+
     </div>
 }
 export default Post;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../utils/validators';
 import {createField, Input} from '../../Assets/FormsControl/FormsControl';
 import {connect} from 'react-redux';
@@ -9,6 +9,7 @@ import s from '../../Assets/FormsControl/FormsControl.module.css'
 import {Button} from "../../Assets/Button/Button";
 
 const maxLength40= maxLengthCreator(40)
+
 const LoginForm = ({error, handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit}>
@@ -28,7 +29,7 @@ const LoginForm = ({error, handleSubmit}) => {
         </form>
     )
 }
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 const Login = (props) => {
     const onSubmit = (formData) => {

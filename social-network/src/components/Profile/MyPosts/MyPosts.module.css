@@ -2,6 +2,15 @@
    padding-top: 40px;
 }
 .postsBlock {
-    padding:20px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: initial;
 
+}
+.postsBlock h3 {
+    margin-top: 7px;
+}
+.postsBlock textarea{
+    width: 100%
 }

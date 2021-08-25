@@ -1,12 +1,8 @@
 .item {
     color: black;
-    /*padding-bottom: 30px;*/
-    /*display: grid;*/
-    /*grid-template-columns: 2fr 7fr 1fr ;*/
-
 }
 .item img {
-    margin: 20px;
+    margin-top: 20px;
     width: 100px;
     height: 100px;
     border-radius: 50px;
@@ -15,8 +11,10 @@
 
 .postText{
     font-size: 20px;
+    display: inline;
 }
 
 .likes {
+    line-height:100px;
     float: right;
 }
