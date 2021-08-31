@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from '../../Preloader/Preloader';
-import userPhoto from '../../../Assets/Images/userPhoto.png';
+import userPhoto from '../../../Common/Images/userPhoto.png';
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 import ProfileDataReduxForm from './ProfileData/ProfileDataForm';
 import ProfileData from './ProfileData/ProfileData';
@@ -25,7 +25,7 @@ const ProfileInfo = ({saveProfile, isOwner, savePhoto, profile, status, updateUs
     }
     return <div className={s.myInfo}>
         <div className={s.left}>
-            <img className={s.mainPhoto} src={profile.photos.large != null ? profile.photos.large : userPhoto}/>
+            <img alt ={'mainPhoto'} className={s.mainPhoto} src={profile.photos.large != null ? profile.photos.large : userPhoto}/>
             {isOwner && <input className={s.selectFile} type={'file'} onChange={onMainPhotoSelected}/>}
             {/*<MyFriends/>*/}
         </div>

@@ -35,10 +35,10 @@ export let profileApi = {
     },
     savePhoto(photoFile) {
         const formData = new FormData();
-        formData.append('image', photoFile)
+        formData.append('image', photoFile)          //add data to object FormData as key/value
         return instance.put(`profile/photo`, formData,
             {headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data'   //
                 }})
     },
     saveProfile(profile) {
@@ -49,11 +49,15 @@ export let authApi = {
     me() {
         return instance.get(`auth/me`);
     },
-    login(email, password, rememberMe = false) {
-        return instance.post('auth/login', {email, password, rememberMe});
+    login(email, password, rememberMe = false,captcha = null) {
+        return instance.post('auth/login', {email, password, rememberMe,captcha});
     },
     logout() {
         return instance.delete('auth/login');
     }
 }
-
+export let securityApi = {
+    getCaptchaUrl () {
+        return instance.get(`security/get-captcha-url`);
+    }
+}

@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './User.module.css';
 import {NavLink} from 'react-router-dom';
-import userPhoto from '../../../Assets/Images/userPhoto.png';
-import {Button} from "../../../Assets/Button/Button";
+import userPhoto from '../../../Common/Images/userPhoto.png';
+import {Button} from "../../../Common/Button/Button";
 
 const User = ({user, followingInProgress, unfollow, follow}) => {
     let disabled = (user) => {followingInProgress.some(id => user.id === id)}
@@ -10,7 +10,7 @@ const User = ({user, followingInProgress, unfollow, follow}) => {
     return <div key={user.id}>
                <span className={s.user}>
                <NavLink to={'/profile' + user.id}>
-                  <img src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                  <img alt ={'userPhoto'} src={user.photos.small != null ? user.photos.small : userPhoto}/>
                </NavLink>
                    {user.name}
                    <span className={s.usersInform}>

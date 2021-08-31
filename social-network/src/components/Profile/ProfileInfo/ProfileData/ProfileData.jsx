@@ -1,6 +1,6 @@
 import React from 'react';
 import s from '../ProfileInfo.module.css';
-import {Button} from "../../../../Assets/Button/Button";
+import {Button} from "../../../../Common/Button/Button";
 
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
     return <div className={s.dataForm}>

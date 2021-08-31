@@ -1,5 +1,5 @@
 import {usersAPI} from '../api';
-import {updateObjectInArray} from '../utils/object-helpers';
+import {updateObjectInArray} from '../Common/utils/object-helpers';
 
 const FOLLOW = 'social-network/usersPage/FOLLOW';
 const UNFOLLOW = 'social-network/usersPage/UNFOLLOW';
@@ -23,12 +23,12 @@ const usersReducer = (state = initialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId,'id', {followed: false})
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: false})
             }
         case FOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId,'id', {followed: true})
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: true})
             };
         case SET_USERS:
             return {...state, users: action.users}
@@ -59,39 +59,56 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 export const toggleFollowingProgress = (isFetching, id) => ({type: TOGGLE_FOLLOWING_PROGRESS, isFetching, id});
 
 
-
-const followUnfollowFlow = async (dispatch,apiMethod, userId, actionCreator) => {
-    dispatch(toggleFollowingProgress(true, userId))
-    let data = await apiMethod(userId)
-    if (data.resultCode === 0) {
-        dispatch(actionCreator(userId))
+const followUnfollowFlow = async (dispatch, apiMethod, userId, actionCreator) => {
+    try {
+        dispatch(toggleFollowingProgress(true, userId));
+        let data = await apiMethod(userId);
+        if (data.resultCode === 0) {
+            dispatch(actionCreator(userId));
+        }
+        dispatch(toggleFollowingProgress(false, userId));
+    } catch (e) {
+        console.log(e.message);
     }
-    dispatch(toggleFollowingProgress(false, userId))
 }
 export const unfollow = (userId) => async (dispatch) => {
-    let apiMethod =  usersAPI.unfollow.bind(usersAPI);
-    let actionCreator = unfollowSuccess;
-    followUnfollowFlow(dispatch, apiMethod, userId, actionCreator)
+    try {
+        let apiMethod = usersAPI.unfollow.bind(usersAPI);
+        followUnfollowFlow(dispatch, apiMethod, userId,  unfollowSuccess);
+    } catch (e) {
+        console.log(e.message);
+    }
 }
 export const follow = (userId) => async (dispatch) => {
-    let apiMethod =  usersAPI.follow.bind(usersAPI);
-    let actionCreator = followSuccess;
-    followUnfollowFlow(dispatch, apiMethod, userId, actionCreator);
+    try {
+        let apiMethod = usersAPI.follow.bind(usersAPI);
+        followUnfollowFlow(dispatch, apiMethod, userId, followSuccess);
+    } catch (e) {
+        console.log(e.message);
+    }
 }
 export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
-    dispatch(toggleIsFetching(true))
-    let data = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(toggleIsFetching(false))
-    dispatch(setUsersSuccess(data.items))
-    dispatch(setTotalUsersCount(data.totalCount))
-    dispatch(setCurrentPage(currentPage))
+    try {
+        dispatch(toggleIsFetching(true));
+        let data = await usersAPI.getUsers(currentPage, pageSize);
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsersSuccess(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
+        dispatch(setCurrentPage(currentPage));
+    } catch (e) {
+        console.log(e.message);
+    }
 }
 export const setUsers = (currentPage, pageSize) => async (dispatch) => {
-    dispatch(setCurrentPage(currentPage))
-    dispatch(toggleIsFetching(true))
-    let data = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(toggleIsFetching(false))
-    dispatch(setUsersSuccess(data.items))
+    try {
+        dispatch(setCurrentPage(currentPage));
+        dispatch(toggleIsFetching(true));
+        let data = await usersAPI.getUsers(currentPage, pageSize);
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsersSuccess(data.items));
+    } catch (e) {
+        console.log(e.message);
+    }
 }
 
 export default usersReducer;

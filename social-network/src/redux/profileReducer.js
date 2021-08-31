@@ -1,7 +1,6 @@
 import {profileApi} from '../api';
-import {stopSubmit} from "redux-form";
-import React from "react";
-import { SubmissionError } from 'redux-form';
+import {stopSubmit} from 'redux-form';
+
 
 const DELETE_POST = 'social-network/profilePage/DELETE_POST';
 const ADD_POST = 'social-network/profilePage/ADD_POST';
@@ -68,33 +67,53 @@ export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
 
 export const getUserProfile = (userId) => async (dispatch) => {
-    const data = await profileApi.getProfile(userId)
-    dispatch(setUserProfile(data));
+    try {
+        const data = await profileApi.getProfile(userId);
+        dispatch(setUserProfile(data));
+    } catch (e) {
+        console.log(e.message);
+    }
 }
 export const getUserStatus = (userId) => async (dispatch) => {
-    const data = await profileApi.getStatus(userId)
-    dispatch(setUserStatus(data));
+    try {
+        const data = await profileApi.getStatus(userId);
+        dispatch(setUserStatus(data));
+    } catch (e) {
+        console.log(e.message);
+    }
 }
 export const updateUserStatus = (status) => async (dispatch) => {
-    const data = await profileApi.updateStatus(status)
-    if (data.resultCode === 0) {
-        dispatch(setUserStatus(status));
+    try {
+        const data = await profileApi.updateStatus(status);
+        if (data.resultCode === 0) {
+            dispatch(setUserStatus(status));
+        }
+    } catch (e) {
+        console.log(e.message);
     }
 }
 export const savePhoto = (photoFile) => async (dispatch) => {
-    const response = await profileApi.savePhoto(photoFile)
-    if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos));
+    try {
+        const response = await profileApi.savePhoto(photoFile);
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccess(response.data.data.photos));
+        }
+    } catch (e) {
+        console.log(e.message);
     }
 }
 export const saveProfile = (profile) => async (dispatch, getState) => {
-    const userId = getState().auth.id;
-    const response = await profileApi.saveProfile(profile);
-    if (response.data.resultCode === 0) {
-        dispatch(getUserProfile(userId));
-    } else {
-      dispatch(stopSubmit('edit-profile', {_error:response.data.messages[0]} ))
-        return Promise.reject(response.data.messages[0])
+    try {
+        const userId = getState().auth.id;
+        const response = await profileApi.saveProfile(profile);
+        if (response.data.resultCode === 0) {
+            dispatch(getUserProfile(userId));
+        } else {
+            dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}));
+            return Promise.reject(response.data.messages[0]);
+        }
+    } catch (e) {
+        console.log(e.message);
     }
 }
 // export const saveProfile = (formData) => async (dispatch, getState) => {

@@ -1,10 +1,10 @@
 import React from 'react';
-import {createField, Input} from "../../../../Assets/FormsControl/FormsControl";
+import {createField, Input} from "../../../../Common/FormsControl/FormsControl";
 import s from '../ProfileInfo.module.css'
-import {Button} from "../../../../Assets/Button/Button";
+import {Button} from "../../../../Common/Button/Button";
 import {reduxForm} from "redux-form";
-import style from '../../../../Assets/FormsControl/FormsControl.module.css'
-import {InputError, required} from "../../../../utils/validators";
+import style from '../../../../Common/FormsControl/FormsControl.module.css'
+
 
 const ProfileDataForm = ({handleSubmit, profile,error}) => {
     return <form className={s.editDataForm} onSubmit={handleSubmit}>
