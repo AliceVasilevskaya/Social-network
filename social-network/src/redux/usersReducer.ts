@@ -2,7 +2,8 @@ import {updateObjectInArray} from '../Common/utils/object-helpers'
 import {UserType} from '../types/types'
 import {BaseThunkType, InferActionTypes} from './redux-store'
 import {Dispatch} from 'redux'
-import {usersAPI} from '../api/user-api'
+import {usersAPI} from '../api/users-api'
+import {ApiResponseType} from '../api/api'
 
 let initialState = {
     users: [] as Array<UserType>,
@@ -10,7 +11,8 @@ let initialState = {
     pageSize: 100,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: [] as Array<number>  // array of user ids
+    followingInProgress: [] as Array<number>, // array of user ids
+    filter: {term: '', friend: null as null | boolean}
 }
 
 const usersReducer = (state = initialState, action: ActionTypes): InitialStateType => {
@@ -33,6 +35,8 @@ const usersReducer = (state = initialState, action: ActionTypes): InitialStateTy
             return {...state, currentPage: action.currentPage}
         case 'social-network/usersPage/TOGGLE_IS_FETCHING':
             return {...state, isFetching: action.isFetching}
+        case 'social-network/usersPage/SET_FILTER':
+            return {...state, filter: action.payload}
         case 'social-network/usersPage/TOGGLE_FOLLOWING_PROGRESS':
             return {
                 ...state,
@@ -45,6 +49,7 @@ const usersReducer = (state = initialState, action: ActionTypes): InitialStateTy
     }
 }
 export const actions = {
+    setFilter: (filter: FilterType) => ({type: 'social-network/usersPage/SET_FILTER', payload:filter} as const),
     followSuccess: (userId: number) => ({type: 'social-network/usersPage/FOLLOW', userId} as const),
     unfollowSuccess: (userId: number) => ({type: 'social-network/usersPage/UNFOLLOW', userId} as const),
     setUsersSuccess: (users: Array<UserType>) => ({type: 'social-network/usersPage/SET_USERS', users} as const),
@@ -66,8 +71,8 @@ export const actions = {
         id
     } as const)
 }
-
-const followUnfollowFlow = async (dispatch: Dispatch<ActionTypes>, apiMethod: any, userId: number,
+const followUnfollowFlow = async (dispatch: Dispatch<ActionTypes>, apiMethod: (userId: number) => Promise<ApiResponseType>,
+                                  userId: number,
                                   actionCreator: (userId: number) => ActionTypes) => {
     try {
         dispatch(actions.toggleFollowingProgress(true, userId))
@@ -91,31 +96,23 @@ export const unfollow = (userId: number): ThunkType =>
     }
 export const follow = (userId: number): ThunkType => async (dispatch) => {
     try {
-        let apiMethod = usersAPI.follow.bind(usersAPI)
-        followUnfollowFlow(dispatch, apiMethod, userId, actions.followSuccess)
+
+        followUnfollowFlow(dispatch, usersAPI.follow.bind(usersAPI) , userId, actions.followSuccess)
     } catch (e: any) {
         console.log(e.message)
     }
 }
-export const requestUsers = (currentPage: number, pageSize: number): ThunkType => async (dispatch) => {
+export const requestUsers = (currentPage: number, pageSize: number, filter: FilterType): ThunkType => async (dispatch) => {
     try {
         dispatch(actions.toggleIsFetching(true))
-        let data = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(actions.setCurrentPage(currentPage))
+        dispatch(actions.setFilter(filter))
+        let data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
         dispatch(actions.toggleIsFetching(false))
         dispatch(actions.setUsersSuccess(data.items))
         dispatch(actions.setTotalUsersCount(data.totalCount))
-        dispatch(actions.setCurrentPage(currentPage))
-    } catch (e: any) {
-        console.log(e.message)
-    }
-}
-export const setUsers = (currentPage: number, pageSize: number): ThunkType => async (dispatch) => {
-    try {
-        dispatch(actions.setCurrentPage(currentPage))
-        dispatch(actions.toggleIsFetching(true))
-        let data = await usersAPI.getUsers(currentPage, pageSize)
-        dispatch(actions.toggleIsFetching(false))
-        dispatch(actions.setUsersSuccess(data.items))
+
+
     } catch (e: any) {
         console.log(e.message)
     }
@@ -124,6 +121,6 @@ export const setUsers = (currentPage: number, pageSize: number): ThunkType => as
 type ActionTypes = InferActionTypes<typeof actions>
 type ThunkType = BaseThunkType<ActionTypes>
 export type InitialStateType = typeof initialState
-
+export type FilterType = typeof initialState.filter
 
 export default usersReducer

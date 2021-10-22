@@ -37,4 +37,4 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageClick, portion
         }}>next</button>}
     </div>
 }
-export default Paginator
+export default Paginator;

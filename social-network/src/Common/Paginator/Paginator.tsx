@@ -88,7 +88,7 @@ type ArrowType = {
     whichPortionNumber?: number
     portionNumber:number
     onPageClick: (pageNumber: number) => void
-    setPortionNumber: any
+    setPortionNumber: (portionNumber: number) => void
     text: string | number
     className: string
 }
